@@ -42,9 +42,10 @@ export default function FileUpload({
             marginTop: "0rem",
             padding: "1rem",
             borderRadius: "1rem",
+            cursor: "pointer",
           }}
         >
-          <input {...fileDropZone.getInputProps({})} disabled={true} />
+          <input {...fileDropZone.getInputProps({})} />
 
           <Stack direction="row" justifyContent="center" gap={2}>
             <Stack>
@@ -54,15 +55,9 @@ export default function FileUpload({
                   dosya seçiniz
                 </Button>
               </Typography> */}
-              <Typography variant="caption">{explanation}</Typography>
-              <Button
-                variant="text"
-                color="primary"
-                sx={{ textTransform: "none" }}
-                onClick={handleFileOpen}
-              >
+              <Typography variant="text" color="primary">
                 Click to select or drop a file
-              </Button>
+              </Typography>
 
               {error && (
                 <Alert severity="error" sx={{ marginTop: "1rem" }}>
@@ -118,7 +113,15 @@ export default function FileUpload({
                   >
                     <CloseOutlinedIcon />
                   </IconButton>
-                  <Alert severity="success" sx={{ marginTop: "1rem" }}>
+                  <Alert
+                    severity="success"
+                    sx={{ marginTop: "1rem" }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      fileDropZone.setForms("");
+                      fileDropZone.setFiles([]);
+                    }}
+                  >
                     <Typography variant="body1" sx={{ fontWeight: 700 }}>
                       {fileDropZone.forms?.name}
                     </Typography>
