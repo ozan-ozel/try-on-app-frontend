@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const authenticate = async (passCode) => {
   const response = await axios.post(
-    `${import.meta.env.BASE_URL}/api/auth`,
+    `${import.meta.env.VITE_BASE_URL}/api/auth`,
     { passCode },
     {
       headers: {
