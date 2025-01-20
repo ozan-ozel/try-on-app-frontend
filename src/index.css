@@ -30,3 +30,68 @@ body {
   height: auto !important;
   width: auto !important;
 }
+
+/* Header Styles */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #1c4e80, #2d5f99); /* Subtle gradient */
+  color: white;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 20px;
+}
+
+.app-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  padding-top: 8px;
+}
+
+.clear-session-btn {
+  background-color: #e4ebf2;
+  /* color: white; */
+  border: 1px solid transparent;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px; /* Rounded button */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.clear-session-btn:hover {
+  background-color: #afc2d8; /* Invert to white */
+  color: #07150a; /* Text matches button's original color */
+  /* border-color: #07150a; */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo-title {
+    margin-bottom: 10px;
+  }
+}

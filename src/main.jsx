@@ -3,15 +3,28 @@ import { createRoot } from "react-dom/client";
 
 import { createTheme, ThemeProvider } from "@mui/material";
 
+import ImageStepperWrapper from "./components/ImageStepperWrapper.jsx";
 import "./index.css";
 import App from "./pages/App.jsx";
-import ImageStepperWrapper from "./components/ImageStepperWrapper.jsx";
 
-const theme = createTheme(); // Create a default theme
+const baseTheme = createTheme(); // Create a default theme
+
+const extendedTheme = createTheme({
+  ...baseTheme,
+  palette: {
+    ...baseTheme.palette,
+    white: {
+      main: "#FFFFFF",
+      light: "#F5F5F5",
+      dark: "#E0E0E0",
+      contrastText: "#000000",
+    },
+  },
+});
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={extendedTheme}>
       <ImageStepperWrapper>
         <App />
       </ImageStepperWrapper>

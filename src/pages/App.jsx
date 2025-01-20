@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+import RefreshIcon from "@mui/icons-material/Refresh";
+
 import { Carousel } from "@trendyol-js/react-carousel";
 
 import CustomImageZoom from "../components/CustomImageZoom";
@@ -26,8 +28,6 @@ import useCustomDropzone from "../hooks/useCustomDropzone";
 import { authenticate } from "../services/AuthService";
 import { executeTryOn } from "../services/TryOnService";
 import createPreviewDimensions from "../utils/createPreviewDimensions";
-
-import RefreshIcon from '@mui/icons-material/Refresh';
 
 export default function App() {
   const { activeStep, selectedModel, setSelectedModel, action, setAction } =
@@ -91,12 +91,12 @@ export default function App() {
   const onAuthSubmit = async (passcode) => {
     try {
       const response = await authenticate(passcode);
-  
+
       if (response?.accessToken) {
         localStorage.setItem("try-on-app:accessToken", response.accessToken);
-        
+
         setAuthorized(true);
-  
+
         return;
       }
     } catch (error) {
@@ -140,34 +140,61 @@ export default function App() {
 
   return (
     <>
-      <Button
-        variant="text"
-        startIcon={<RefreshIcon />}
-        sx={{
-          textTransform: "none",
-          mt: 1,
-          ml: 2
-        }}
-        onClick={() => {
-          window.location.reload();
-          localStorage.removeItem("try-on-app:accessToken");
-          setAuthorized(false);
-        }}
-      >
-        Clear Session
-      </Button>
+      <header className="app-header">
+        <div className="header-content">
+          <div className="logo-title">
+            <img
+              src="https://patikaglobal.com/wp-content/uploads/2022/09/logo.svg"
+              alt="Patika Logo"
+              className="logo"
+            />
+            <h1 className="app-title">Virtual Try-On Application</h1>
+          </div>
+          <button className="clear-session-btn">Clear Session</button>
+        </div>
+      </header>
+      {/* <Box sx={{ backgroundColor: "#002047", py: 1, px: 4 }}>
+        <Grid container spacing={4}>
+          <Grid item {...(isMobile ? { xs: 12 } : {})}>
+            <img src="https://patikaglobal.com/wp-content/uploads/2022/09/logo.svg" />
+          </Grid>
+          <Grid item {...(isMobile ? { xs: 12 } : {})}>
+            <Typography sx={{ fontSize: "16px", color: "white !important", mt: 3 }} color="white">
+              Virtual Try-On Demo Application
+            </Typography>
+          </Grid>
+          <Grid item {...(isMobile ? { xs: 12 } : {})}>
+            <Button
+              variant="outlined"
+              startIcon={<RefreshIcon />}
+              color="white"
+              sx={{
+                mt: 2,
+                textTransform: "none",
+              }}
+              onClick={() => {
+                window.location.reload();
+                localStorage.removeItem("try-on-app:accessToken");
+                setAuthorized(false);
+              }}
+            >
+              Clear Session
+            </Button>
+          </Grid>
+        </Grid>
+      </Box> */}
       <Box
         sx={{
           display: "flex",
           flexDirection: isMobile ? "column" : "row", // Change direction based on screen size
-          margin: "0px 16px 16px 16px",
+          margin: "8px 8px 0px 8px",
           padding: "0px",
         }}
       >
-        <Grid container sx={{ mt: 1, mr: 3, mb: 2 }} spacing={2}>
+        <Grid container sx={{  mr: 3 }} spacing={2}>
           <Grid
             item
-            {...isMobile ? { xs: 12 }: {}}
+            {...(isMobile ? { xs: 12 } : {})}
             sx={isMobile ? { display: "flex", justifyContent: "center" } : {}}
           >
             <Card variant="outlined" sx={{ mb: 2, width: "320px", borderRadius: "1rem" }}>
@@ -185,7 +212,7 @@ export default function App() {
           </Grid>
           <Grid
             item
-            {...isMobile ? { xs: 12 }: {}}
+            {...(isMobile ? { xs: 12 } : {})}
             sx={isMobile ? { display: "flex", justifyContent: "center" } : {}}
           >
             <ImageStepper steps={garmentImageLinks}>
@@ -199,14 +226,15 @@ export default function App() {
           {result && (
             <Grid
               item
-              {...isMobile ? { xs: 12 }: {}}
+              {...(isMobile ? { xs: 12 } : {})}
               sx={isMobile ? { display: "flex", justifyContent: "center" } : {}}
             >
-              <Card variant="outlined" 
-                sx={
-                  { 
-                    // width: "320px", 
-                  borderRadius: "1rem" }}>
+              <Card
+                variant="outlined"
+                sx={{
+                  borderRadius: "1rem",
+                }}
+              >
                 <CardHeader
                   title={
                     <Typography textAlign="center" fontSize="18px">
@@ -218,6 +246,21 @@ export default function App() {
                   <CustomImageZoom imageUrl={result.url} previewDimensions={resultDimension} />
                 </CardContent>
               </Card>
+            </Grid>
+          )}
+          {!isMobile && (
+            <Grid item>
+              <img
+                style={{
+                  position: "absolute",
+                  bottom: "00px",
+                  right: "0px",
+                  opacity: "0.5",
+                  zIndex: "-999",
+                  width: "50vw" 
+                }}
+                src="https://tz8yal1szp.ufs.sh/f/pCC8PBM0JDCqOhdrByYbMkojgU1A8cOZDQCXPHzdl42Sw5ts"
+              />
             </Grid>
           )}
         </Grid>
