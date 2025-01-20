@@ -141,12 +141,12 @@ export default function App() {
   return (
     <>
       <Button
-        fullWidth
         variant="text"
         startIcon={<RefreshIcon />}
         sx={{
           textTransform: "none",
-          mt: 1
+          mt: 1,
+          ml: 2
         }}
         onClick={() => {
           window.location.reload();
@@ -160,16 +160,14 @@ export default function App() {
         sx={{
           display: "flex",
           flexDirection: isMobile ? "column" : "row", // Change direction based on screen size
-          margin: "8px 36px 36px 36px",
+          margin: "0px 16px 16px 16px",
           padding: "0px",
         }}
       >
-        <Grid container sx={{ mt: 1, mr: 3, mb: 2 }}>
-          <Grid item xs={12}></Grid>
+        <Grid container sx={{ mt: 1, mr: 3, mb: 2 }} spacing={2}>
           <Grid
             item
-            md={3}
-            xs={12}
+            {...isMobile ? { xs: 12 }: {}}
             sx={isMobile ? { display: "flex", justifyContent: "center" } : {}}
           >
             <Card variant="outlined" sx={{ mb: 2, width: "320px", borderRadius: "1rem" }}>
@@ -187,8 +185,7 @@ export default function App() {
           </Grid>
           <Grid
             item
-            md={3}
-            xs={12}
+            {...isMobile ? { xs: 12 }: {}}
             sx={isMobile ? { display: "flex", justifyContent: "center" } : {}}
           >
             <ImageStepper steps={garmentImageLinks}>
@@ -202,8 +199,7 @@ export default function App() {
           {result && (
             <Grid
               item
-              md
-              xs={12}
+              {...isMobile ? { xs: 12 }: {}}
               sx={isMobile ? { display: "flex", justifyContent: "center" } : {}}
             >
               <Card variant="outlined" sx={{ width: "320px", borderRadius: "1rem" }}>
