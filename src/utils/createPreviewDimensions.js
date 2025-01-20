@@ -1,5 +1,5 @@
 const createPreviewDimensions = ({ maxWidth, maxHeight, originalWidth, originalHeight }) => {
-  console.log({ maxWidth, maxHeight, originalWidth, originalHeight });  
+  console.log({ maxWidth, maxHeight, originalWidth, originalHeight });
 
   const aspectRatio = originalWidth / originalHeight;
 
@@ -10,16 +10,9 @@ const createPreviewDimensions = ({ maxWidth, maxHeight, originalWidth, originalH
 
   let newWidth, newHeight;
 
-  // Scale based on the aspect ratio
-  if (aspectRatio > 1) {
-    // Landscape orientation
-    newWidth = maxWidth;
-    newHeight = Math.min(maxHeight, newWidth / aspectRatio);
-  } else {
-    // Portrait or square orientation
-    newHeight = maxHeight;
-    newWidth = Math.min(maxWidth, newHeight * aspectRatio);
-  }
+  // Portrait or square orientation
+  newWidth = maxWidth;
+  newHeight = (1 / aspectRatio) * newWidth;
 
   return { width: Math.round(newWidth), height: Math.round(newHeight) };
 };

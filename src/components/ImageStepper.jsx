@@ -24,7 +24,7 @@ export default function ImageStepper({ steps, children }) {
   }, [action]);
 
   return (
-    <Grid container justifyContent={"center"} spacing={2}>
+    <Grid container justifyContent={"center"} spacing={2} sx={{ width: "340px" }}>
       <Grid item xs={12} sx={isMobile ? { display: "flex", justifyContent: "center" } : {}}>
         {children}
       </Grid>

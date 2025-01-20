@@ -22,3 +22,11 @@ body {
   justify-content: center;
 }
 
+.zoom-image-modal .MuiDialog-container {
+  justify-content: center !important;
+}
+
+.zoom-image-modal .MuiDialog-paper {
+  height: auto !important;
+  width: auto !important;
+}

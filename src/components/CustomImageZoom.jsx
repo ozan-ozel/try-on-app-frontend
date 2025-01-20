@@ -20,6 +20,7 @@ export default function CustomImageZoom({ imageUrl, previewDimensions }) {
         <Dialog
           className="zoom-image-modal"
           open={open}
+          maxWidth="lg"
           onClose={() => setOpen(false)}
           fullScreen
           PaperProps={{
@@ -29,8 +30,17 @@ export default function CustomImageZoom({ imageUrl, previewDimensions }) {
             },
           }}
         >
-          <DialogContent sx={{ width: "100%" }}>
-            <img style={{ width: "100%", height: "100%" }} src={imageUrl} loading="lazy" />
+          <DialogContent 
+            sx={{ justifyContent: "center" }}
+          >
+            <img 
+              style={{
+                maxWidth: "80vw",
+                maxHeight: "80vh",
+                objectFit: "contain"
+              }}
+              src={imageUrl} 
+              loading="lazy" />
           </DialogContent>
         </Dialog>
       )}

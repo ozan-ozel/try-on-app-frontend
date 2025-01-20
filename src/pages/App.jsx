@@ -124,8 +124,8 @@ export default function App() {
           setResult(response?.data?.images?.[0]);
           setResultDimension(
             createPreviewDimensions({
-              maxWidth: window.innerWidth * 0.6,
-              maxHeight: window.innerHeight * 0.7,
+              maxWidth: 320,
+              // maxHeight: isMobile ? window.innerHeight - 40 : window.innerHeight - 40,
               originalWidth: response?.data?.images?.[0].width,
               originalHeight: response?.data?.images?.[0].height,
             })
@@ -202,7 +202,11 @@ export default function App() {
               {...isMobile ? { xs: 12 }: {}}
               sx={isMobile ? { display: "flex", justifyContent: "center" } : {}}
             >
-              <Card variant="outlined" sx={{ width: "320px", borderRadius: "1rem" }}>
+              <Card variant="outlined" 
+                sx={
+                  { 
+                    // width: "320px", 
+                  borderRadius: "1rem" }}>
                 <CardHeader
                   title={
                     <Typography textAlign="center" fontSize="18px">
@@ -211,15 +215,7 @@ export default function App() {
                   }
                 />
                 <CardContent sx={{ display: "flex", justifyContent: "center" }}>
-                  <img
-                    style={{
-                      borderRadius: "1rem",
-                      width: resultDimension.width,
-                      height: resultDimension.height,
-                    }}
-                    src={result.url}
-                    loading="lazy"
-                  />
+                  <CustomImageZoom imageUrl={result.url} previewDimensions={resultDimension} />
                 </CardContent>
               </Card>
             </Grid>
